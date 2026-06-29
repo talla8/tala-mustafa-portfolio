@@ -16,7 +16,7 @@ export function Section({
   children,
 }: SectionProps) {
   return (
-    <section id={id} className="section">
+    <section id={id} className="section reveal-on-scroll">
       <div className="section-heading">
         <span className="section-eyebrow">{eyebrow}</span>
         <h2>{title}</h2>

@@ -3,12 +3,14 @@ import type { Project } from '../types';
 
 type ProjectCardProps = {
   project: Project;
+  index?: number;
 };
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
-    <article className="card project-card">
+    <article className="card project-card reveal-on-scroll" style={{ transitionDelay: `${index * 90}ms` }}>
       <div className="project-header">
+        <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
         <div>
           <h3>{project.title}</h3>
           <p className="project-subtitle">{project.subtitle}</p>
@@ -17,17 +19,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <p className="project-description">{project.description}</p>
 
-      <div className="project-block">
-        <h4>Key Features</h4>
-        <ul className="feature-list">
-          {project.features.map((feature) => (
-            <li key={feature}>{feature}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="project-block">
-        <h4>Tech Stack</h4>
+      <div className="project-meta">
         <div className="badge-list">
           {project.stack.map((item) => (
             <span key={item} className="badge badge--soft">
